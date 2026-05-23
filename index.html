@@ -610,6 +610,303 @@
     .nav-item.active {
       color: var(--bright-blue);
     }
+
+    /* ==================== 拦截层 ==================== */
+    .intercept-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-speed) var(--ease-in-out);
+      z-index: 950;
+    }
+
+    .intercept-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .intercept-content {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      width: calc(100% - 48px);
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .intercept-icon {
+      width: 60px;
+      height: 60px;
+      background: #ff6b6b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 28px;
+    }
+
+    .intercept-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .intercept-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .intercept-button {
+      width: 100%;
+      height: 48px;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .intercept-close {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ==================== VIP购买页 ==================== */
+    .page#vip-stage {
+      background: #fff;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-speed) var(--ease-in-out);
+    }
+
+    .vip-header {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+      padding: 80px 20px 30px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .vip-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .vip-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .vip-countdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .countdown-timer {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'SF Mono', Monaco, monospace;
+      letter-spacing: 2px;
+    }
+
+    .countdown-badge {
+      background: #e74c3c;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .vip-quota {
+      text-align: center;
+      padding: 0 20px 20px;
+      background: #fff;
+      position: relative;
+    }
+
+    .quota-text {
+      font-size: 14px;
+      color: #e74c3c;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quota-number {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* 净化徽章 */
+    .purified-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px;
+      height: 24px;
+      background: var(--bright-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #fff;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity var(--transition-speed);
+      box-shadow: 0 2px 8px rgba(30, 144, 255, 0.4);
+    }
+
+    /* 净化状态 */
+    .vip-countdown.purified,
+    .vip-quota.purified {
+      opacity: 0.5;
+      filter: grayscale(100%);
+    }
+
+    .vip-countdown.purified .purified-badge,
+    .vip-quota.purified .purified-badge {
+      opacity: 1;
+    }
+
+    /* 会员套餐卡片 */
+    .vip-plans {
+      padding: 20px;
+      gap: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vip-plan {
+      border: 2px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+    }
+
+    .vip-plan.selected {
+      border-color: var(--bright-blue);
+      background: rgba(30, 144, 255, 0.05);
+    }
+
+    .vip-plan.recommended {
+      border-color: #ff6b6b;
+    }
+
+    .vip-plan.recommended::before {
+      content: '特惠';
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      background: #ff6b6b;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .plan-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .plan-currency {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--bright-blue);
+    }
+
+    .plan-amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--bright-blue);
+    }
+
+    .plan-unit {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .plan-original {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    .plan-tag {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .auto-renew {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 20px;
+      background: #f8f8f8;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .auto-renew input {
+      width: 20px;
+      height: 20px;
+    }
+
+    .vip-confirm {
+      padding: 20px;
+    }
+
+    .vip-confirm button {
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, var(--bright-blue) 0%, #00d4ff 100%);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -651,6 +948,17 @@
               AI推荐
             </span>
           </div>
+        </div>
+      </div>
+
+      <!-- 拦截层弹窗 -->
+      <div class="intercept-modal" id="intercept-modal">
+        <div class="intercept-content">
+          <div class="intercept-icon">🔒</div>
+          <div class="intercept-title">播放此视频需开通 VIP</div>
+          <div class="intercept-desc">开通会员即可畅看全站视频<br>新用户首月仅需 1 元</div>
+          <button class="intercept-button" id="go-to-vip-btn">前往开通</button>
+          <button class="intercept-close" id="close-intercept-btn">暂不开通</button>
         </div>
       </div>
 
@@ -752,7 +1060,62 @@
       </div>
 
       <!-- VIP购买页 -->
-      <div id="vip-stage" class="page"></div>
+      <div id="vip-stage" class="page">
+        <div class="vip-header">
+          <div class="vip-title">STREAM+ 会员</div>
+          <div class="vip-subtitle">畅享全站高清视频</div>
+          <div class="vip-countdown" id="vip-countdown" data-pattern="countdown">
+            <span class="countdown-badge">⚡ 特惠倒计时</span>
+            <span class="countdown-timer" id="countdown-timer">05:12</span>
+            <span class="purified-badge">🛡️</span>
+          </div>
+        </div>
+        <div class="vip-quota" id="vip-quota" data-pattern="quota">
+          <span class="quota-text">
+            🔥 仅剩 <span class="quota-number">3</span> 个名额
+          </span>
+          <span class="purified-badge">🛡️</span>
+        </div>
+        <div class="vip-plans">
+          <div class="vip-plan recommended selected" data-plan="monthly">
+            <div class="plan-name">月卡会员</div>
+            <div class="plan-price">
+              <span class="plan-currency">¥</span>
+              <span class="plan-amount">15</span>
+              <span class="plan-unit">/月</span>
+              <span class="plan-original">¥30</span>
+            </div>
+            <div class="plan-tag">自动续费可随时取消</div>
+          </div>
+          <div class="vip-plan" data-plan="quarterly">
+            <div class="plan-name">季卡会员</div>
+            <div class="plan-price">
+              <span class="plan-currency">¥</span>
+              <span class="plan-amount">68</span>
+              <span class="plan-unit">/季</span>
+              <span class="plan-original">¥90</span>
+            </div>
+            <div class="plan-tag">平均每月仅需 ¥22.7</div>
+          </div>
+          <div class="vip-plan" data-plan="yearly">
+            <div class="plan-name">年卡会员</div>
+            <div class="plan-price">
+              <span class="plan-currency">¥</span>
+              <span class="plan-amount">198</span>
+              <span class="plan-unit">/年</span>
+              <span class="plan-original">¥360</span>
+            </div>
+            <div class="plan-tag">立省 ¥162，超划算</div>
+          </div>
+        </div>
+        <div class="auto-renew">
+          <input type="checkbox" id="auto-renew" checked>
+          <label for="auto-renew">开通自动续费，到期自动扣款</label>
+        </div>
+        <div class="vip-confirm">
+          <button id="confirm-purchase-btn">确认支付 ¥15</button>
+        </div>
+      </div>
 
       <!-- 订阅管理页 -->
       <div id="unsub-stage" class="page"></div>
@@ -934,8 +1297,8 @@
       }, 2000);
     }
 
-    // 悬浮盾点击事件
-    elements.shieldBall.addEventListener('click', () => {
+    // 悬浮盾点击事件（合并所有阶段）
+    function onShieldClick() {
       if (simulationState.isAnimating) return;
 
       openBottomSheet();
@@ -946,8 +1309,14 @@
           // 扫描完成后，准备执行净化
           elements.actionButton.onclick = () => purifyAdStage();
         });
+      } else if (simulationState.currentStage === 'VIP_STAGE') {
+        playScanLog('识别到2处焦虑性高压促销...', () => {
+          elements.actionButton.onclick = () => purifyVipStage();
+        });
       }
-    });
+    }
+
+    elements.shieldBall.addEventListener('click', onShieldClick);
 
     // 点击遮罩层关闭抽屉
     elements.sheetOverlay.addEventListener('click', closeBottomSheet);
@@ -994,6 +1363,137 @@
         // 在真实场景中这里会触发下载
       }
     });
+
+    // ==================== 阶段四：VIP购买页场景逻辑 ====================
+
+    // 拦截层和VIP页元素
+    const vipElements = {
+      interceptModal: document.getElementById('intercept-modal'),
+      goToVipBtn: document.getElementById('go-to-vip-btn'),
+      closeInterceptBtn: document.getElementById('close-intercept-btn'),
+      vipCountdown: document.getElementById('vip-countdown'),
+      vipQuota: document.getElementById('vip-quota'),
+      countdownTimer: document.getElementById('countdown-timer'),
+      confirmPurchaseBtn: document.getElementById('confirm-purchase-btn'),
+      videoCards: document.querySelectorAll('.video-card')
+    };
+
+    // 倒计时变量
+    let countdownInterval = null;
+    let countdownSeconds = 312; // 5分12秒
+
+    // 视频卡片点击事件
+    vipElements.videoCards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (simulationState.currentStage === 'HOME_STAGE') {
+          // 模拟加载1秒后弹出拦截层
+          console.log('正在播放视频...');
+          setTimeout(() => {
+            vipElements.interceptModal.classList.add('active');
+          }, 1000);
+        }
+      });
+    });
+
+    // 拦截层：前往开通按钮
+    vipElements.goToVipBtn.addEventListener('click', () => {
+      vipElements.interceptModal.classList.remove('active');
+      switchPage('VIP_STAGE');
+      // 启动倒计时
+      startCountdown();
+      // 1秒后触发悬浮盾
+      setTimeout(() => {
+        setShieldState('ALERTING');
+      }, 1000);
+    });
+
+    // 拦截层：暂不开通按钮
+    vipElements.closeInterceptBtn.addEventListener('click', () => {
+      vipElements.interceptModal.classList.remove('active');
+    });
+
+    // 倒计时功能
+    function startCountdown() {
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        countdownSeconds--;
+
+        if (countdownSeconds <= 0) {
+          clearInterval(countdownInterval);
+          countdownSeconds = 312; // 重置循环
+        }
+
+        const minutes = Math.floor(countdownSeconds / 60);
+        const seconds = countdownSeconds % 60;
+        vipElements.countdownTimer.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    // 净化VIP购买页
+    function purifyVipStage() {
+      if (simulationState.isAnimating) return;
+      simulationState.isAnimating = true;
+
+      closeBottomSheet();
+
+      // 应用净化样式
+      setTimeout(() => {
+        // 倒计时和名额：变灰 + 透明度50% + 显示徽章
+        vipElements.vipCountdown.classList.add('purified');
+        vipElements.vipQuota.classList.add('purified');
+
+        setShieldState('PURIFIED');
+        simulationState.isAnimating = false;
+
+        console.log('✓ VIP购买页净化完成');
+      }, 300);
+    }
+
+    // 确认购买按钮
+    vipElements.confirmPurchaseBtn.addEventListener('click', () => {
+      if (simulationState.shieldState === 'PURIFIED') {
+        simulationState.isVipPurchased = true;
+        console.log('VIP购买成功，进入订阅管理页');
+        clearInterval(countdownInterval);
+        setShieldState('HIDDEN');
+        switchPage('UNSUB_STAGE');
+        // 后续阶段五会添加订阅管理页内容
+      }
+    });
+
+    // 修改页面切换函数，支持VIP和UNSUB页面
+    const originalSwitchPage = switchPage;
+    switchPage = function(stageName) {
+      const pageMap = {
+        'AD_STAGE': 'adStage',
+        'HOME_STAGE': 'homeStage',
+        'VIP_STAGE': 'vipStage',
+        'UNSUB_STAGE': 'unsubStage'
+      };
+
+      // 控制广告页的显示/隐藏
+      if (stageName === 'AD_STAGE') {
+        elements.pages.adStage.classList.add('active');
+      } else {
+        elements.pages.adStage.classList.remove('active');
+      }
+
+      // 控制VIP/UNSUB页的显示/隐藏（首页始终可见）
+      ['vipStage', 'unsubStage'].forEach(key => {
+        elements.pages[key].style.opacity = '0';
+        elements.pages[key].style.visibility = 'hidden';
+      });
+
+      if (pageMap[stageName] && (stageName === 'VIP_STAGE' || stageName === 'UNSUB_STAGE')) {
+        elements.pages[pageMap[stageName]].style.opacity = '1';
+        elements.pages[pageMap[stageName]].style.visibility = 'visible';
+      }
+
+      // 更新状态
+      simulationState.currentStage = stageName;
+      updateDebugPanel();
+    };
 
     // ==================== 初始化 ====================
     function init() {
