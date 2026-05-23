@@ -42,7 +42,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      padding: 20px;
     }
 
     /* ==================== iPhone 容器 ==================== */
@@ -282,19 +282,41 @@
 
     /* 开屏广告页特殊处理 */
     .page#ad-stage {
-      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+      background: transparent;
       padding-top: 0;
+      z-index: 900;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .page#ad-stage.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page#ad-stage {
+      transition: opacity var(--transition-speed) var(--ease-in-out);
+    }
+
+    /* 首页始终显示在背景 */
+    .page#home-stage {
+      background: var(--bg-light);
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
     }
 
     /* ==================== 开屏广告页内容 ==================== */
     .ad-content {
       width: 100%;
       height: 100%;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
+      padding-top: 60px;
     }
 
     /* 广告Logo */
@@ -318,11 +340,11 @@
     /* 假关闭按钮（诱饵） */
     .decoy-close-btn {
       position: absolute;
-      top: 50%;
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       background: rgba(255,255,255,0.95);
       border-radius: 50%;
       display: flex;
@@ -331,10 +353,11 @@
       cursor: pointer;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       transition: all var(--transition-speed) var(--ease-in-out);
+      z-index: 1;
     }
 
     .decoy-close-btn .x-icon {
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 300;
       color: #e74c3c;
     }
@@ -367,14 +390,16 @@
     /* 真跳过按钮 */
     .real-skip-btn {
       position: absolute;
-      top: 60px;
-      right: 20px;
+      top: 65%;
+      right: 50%;
+      transform: translateX(50%);
       font-size: 5px;
       color: rgba(255,255,255,0.3);
       cursor: pointer;
       transition: all var(--transition-speed) var(--ease-in-out);
       padding: 4px 8px;
       border-radius: 4px;
+      text-align: center;
     }
 
     /* 真按钮净化后的样式 */
@@ -415,8 +440,8 @@
     /* 调试信息面板 */
     .debug-panel {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
+      bottom: 30px;
+      left: 30px;
       background: rgba(0, 0, 0, 0.8);
       color: #0f0;
       padding: 12px 16px;
@@ -429,6 +454,161 @@
     .debug-panel .label {
       color: #888;
       margin-right: 8px;
+    }
+
+    /* 调试面板关闭按钮 */
+    .debug-close {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      color: #888;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .debug-close:hover {
+      color: #fff;
+    }
+
+    /* ==================== 首页样式 ==================== */
+    .home-header {
+      background: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .home-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .home-icons {
+      display: flex;
+      gap: 16px;
+      color: var(--text-primary);
+    }
+
+    .home-search {
+      background: #f2f2f7;
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin: 10px 16px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .banner {
+      width: calc(100% - 32px);
+      height: 140px;
+      background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+      border-radius: 12px;
+      margin: 10px 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      padding: 0 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition-speed);
+    }
+
+    .video-card:active {
+      transform: scale(0.98);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-play-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 8px;
+    }
+
+    .video-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .video-meta {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    .nav-item.active {
+      color: var(--bright-blue);
     }
   </style>
 </head>
@@ -475,7 +655,101 @@
       </div>
 
       <!-- 首页 -->
-      <div id="home-stage" class="page"></div>
+      <div id="home-stage" class="page">
+        <div style="padding-bottom: 60px;">
+          <div class="home-header">
+            <div class="home-logo">STREAM+</div>
+            <div class="home-icons">
+              <span>📺</span>
+              <span>🔍</span>
+              <span>👤</span>
+            </div>
+          </div>
+          <div class="home-search">搜索视频、电影、综艺...</div>
+          <div class="banner">限时特惠 · 新用户首月1元</div>
+
+          <div class="section-title">热门推荐</div>
+          <div class="video-grid">
+            <div class="video-card" id="video-1">
+              <div class="video-thumbnail">
+                <div class="video-play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">都市爱情剧</div>
+                <div class="video-meta">2.3亿播放 · 45集</div>
+              </div>
+            </div>
+            <div class="video-card" id="video-2">
+              <div class="video-thumbnail">
+                <div class="video-play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">科幻大片</div>
+                <div class="video-meta">1.8亿播放 · 2小时</div>
+              </div>
+            </div>
+            <div class="video-card" id="video-3">
+              <div class="video-thumbnail">
+                <div class="video-play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">悬疑推理</div>
+                <div class="video-meta">3.1亿播放 · 24集</div>
+              </div>
+            </div>
+            <div class="video-card" id="video-4">
+              <div class="video-thumbnail">
+                <div class="video-play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">综艺真人秀</div>
+                <div class="video-meta">5.6亿播放 · 12期</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-title">为你推荐</div>
+          <div class="video-grid">
+            <div class="video-card" id="video-5">
+              <div class="video-thumbnail">
+                <div class="video-play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">喜剧电影</div>
+                <div class="video-meta">8900万播放 · 1.5小时</div>
+              </div>
+            </div>
+            <div class="video-card" id="video-6">
+              <div class="video-thumbnail">
+                <div class="video-play-icon">▶</div>
+              </div>
+              <div class="video-info">
+                <div class="video-title">动画番剧</div>
+                <div class="video-meta">1.2亿播放 · 12集</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item active">
+            <span>🏠</span>
+            <span>首页</span>
+          </div>
+          <div class="nav-item">
+            <span>🎬</span>
+            <span>视频</span>
+          </div>
+          <div class="nav-item">
+            <span>📺</span>
+            <span>直播</span>
+          </div>
+          <div class="nav-item">
+            <span>👤</span>
+            <span>我的</span>
+          </div>
+        </div>
+      </div>
 
       <!-- VIP购买页 -->
       <div id="vip-stage" class="page"></div>
@@ -506,6 +780,7 @@
 
   <!-- 调试面板（开发阶段使用） -->
   <div class="debug-panel" id="debug-panel">
+    <span class="debug-close" onclick="this.parentElement.style.display='none'">✕</span>
     <div><span class="label">Stage:</span><span id="debug-stage">AD_STAGE</span></div>
     <div><span class="label">Shield:</span><span id="debug-shield">HIDDEN</span></div>
   </div>
@@ -561,12 +836,7 @@
 
     // ==================== 页面切换函数 ====================
     function switchPage(stageName) {
-      // 隐藏所有页面
-      Object.values(elements.pages).forEach(page => {
-        page.classList.remove('active');
-      });
-
-      // 显示目标页面
+      // 首页始终可见，广告页作为覆盖层
       const pageMap = {
         'AD_STAGE': 'adStage',
         'HOME_STAGE': 'homeStage',
@@ -574,9 +844,11 @@
         'UNSUB_STAGE': 'unsubStage'
       };
 
-      const targetPage = elements.pages[pageMap[stageName]];
-      if (targetPage) {
-        targetPage.classList.add('active');
+      // 控制广告页的显示/隐藏
+      if (stageName === 'AD_STAGE') {
+        elements.pages.adStage.classList.add('active');
+      } else {
+        elements.pages.adStage.classList.remove('active');
       }
 
       // 更新状态
