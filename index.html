@@ -471,20 +471,28 @@
 
     /* ==================== 首页样式 ==================== */
     .home-header {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
       background: #fff;
       padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      z-index: 10;
+      z-index: 50;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.1);
     }
 
-    .home-content {
-      padding-top: 60px;
+    .home-scroll-content {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      bottom: 60px;
+      overflow-y: auto;
+      background: var(--bg-light);
+      padding-bottom: 20px;
     }
 
     .home-logo {
@@ -600,7 +608,7 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      z-index: 100;
+      z-index: 50;
     }
 
     .nav-item {
@@ -701,6 +709,47 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity var(--transition-speed) var(--ease-in-out);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    /* VIP页面顶部导航栏 */
+    .vip-nav-header {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      z-index: 50;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .vip-nav-header .back-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .vip-nav-header .title {
+      flex: 1;
+      text-align: center;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* VIP页面内容区域 */
+    .vip-page-content {
+      padding-top: 110px;
+      padding-bottom: 20px;
     }
 
     .vip-header {
@@ -920,11 +969,51 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity var(--transition-speed) var(--ease-in-out);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    .unsub-nav-header {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      z-index: 50;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .unsub-nav-header .back-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .unsub-nav-header .title {
+      flex: 1;
+      text-align: center;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* 订阅管理页内容区域 */
+    .unsub-page-content {
+      padding-top: 110px;
+      padding-bottom: 20px;
     }
 
     .unsub-header {
       background: #fff;
-      padding: 80px 20px 20px;
+      padding: 0 20px 20px;
       border-bottom: 1px solid #e0e0e0;
     }
 
@@ -1228,7 +1317,7 @@
             <span>👤</span>
           </div>
         </div>
-        <div class="home-content" style="padding-bottom: 60px;">
+        <div class="home-scroll-content">
           <div class="home-search">搜索视频、电影、综艺...</div>
           <div class="banner">限时特惠 · 新用户首月1元</div>
 
@@ -1314,24 +1403,48 @@
           </div>
         </div>
         </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item active">
+            <span>🏠</span>
+            <span>首页</span>
+          </div>
+          <div class="nav-item">
+            <span>🎬</span>
+            <span>视频</span>
+          </div>
+          <div class="nav-item">
+            <span>📺</span>
+            <span>直播</span>
+          </div>
+          <div class="nav-item">
+            <span>👤</span>
+            <span>我的</span>
+          </div>
+        </div>
       </div>
 
       <!-- VIP购买页 -->
       <div id="vip-stage" class="page">
-        <div class="vip-header">
-          <div class="vip-title">STREAM+ 会员</div>
-          <div class="vip-subtitle">畅享全站高清视频</div>
-          <div class="vip-countdown" id="vip-countdown" data-pattern="countdown">
-            <span class="countdown-badge">⚡ 特惠倒计时</span>
-            <span class="countdown-timer" id="countdown-timer">05:12</span>
-            <span class="purified-badge">🛡️</span>
-          </div>
+        <div class="vip-nav-header">
+          <button class="back-btn" id="vip-back-btn">←</button>
+          <span class="title">会员中心</span>
         </div>
-        <div class="vip-quota" id="vip-quota" data-pattern="quota">
-          <span class="quota-text">
-            🔥 仅剩 <span class="quota-number">3</span> 个名额
-          </span>
-          <span class="purified-badge">🛡️</span>
+        <div class="vip-page-content">
+          <div class="vip-header">
+            <div class="vip-title">STREAM+ 会员</div>
+            <div class="vip-subtitle">畅享全站高清视频</div>
+            <div class="vip-countdown" id="vip-countdown" data-pattern="countdown">
+              <span class="countdown-badge">⚡ 特惠倒计时</span>
+              <span class="countdown-timer" id="countdown-timer">05:12</span>
+              <span class="purified-badge">🛡️</span>
+            </div>
+          </div>
+          <div class="vip-quota" id="vip-quota" data-pattern="quota">
+            <span class="quota-text">
+              🔥 仅剩 <span class="quota-number">3</span> 个名额
+            </span>
+            <span class="purified-badge">🛡️</span>
         </div>
         <div class="vip-plans">
           <div class="vip-plan recommended selected" data-plan="monthly">
@@ -1376,30 +1489,36 @@
 
       <!-- 订阅管理页 -->
       <div id="unsub-stage" class="page">
-        <div class="unsub-header">
-          <div class="unsub-title">订阅管理</div>
-          <div class="unsub-subtitle">管理您的会员服务</div>
+        <div class="unsub-nav-header">
+          <button class="back-btn" id="unsub-back-btn">←</button>
+          <span class="title">订阅管理</span>
         </div>
-        <div class="unsub-content">
-          <div class="subscription-card">
-            <div class="subscription-card-header">
-              <span class="subscription-name">STREAM+ 月卡会员</span>
-              <span class="subscription-status">生效中</span>
-            </div>
-            <div class="subscription-detail">
-              <span class="subscription-detail-label">订阅类型</span>
-              <span class="subscription-detail-value">自动续费月卡</span>
-            </div>
-            <div class="subscription-detail">
-              <span class="subscription-detail-label">到期时间</span>
-              <span class="subscription-detail-value">2026-06-23</span>
-            </div>
-            <div class="subscription-detail">
-              <span class="subscription-detail-label">续费金额</span>
-              <span class="subscription-detail-value">¥15/月</span>
-            </div>
+        <div class="unsub-page-content">
+          <div class="unsub-header">
+            <div class="unsub-title">订阅管理</div>
+            <div class="unsub-subtitle">管理您的会员服务</div>
           </div>
-          <button class="cancel-btn" id="cancel-subscription-btn">取消自动续费</button>
+          <div class="unsub-content">
+            <div class="subscription-card">
+              <div class="subscription-card-header">
+                <span class="subscription-name">STREAM+ 月卡会员</span>
+                <span class="subscription-status">生效中</span>
+              </div>
+              <div class="subscription-detail">
+                <span class="subscription-detail-label">订阅类型</span>
+                <span class="subscription-detail-value">自动续费月卡</span>
+              </div>
+              <div class="subscription-detail">
+                <span class="subscription-detail-label">到期时间</span>
+                <span class="subscription-detail-value">2026-06-23</span>
+              </div>
+              <div class="subscription-detail">
+                <span class="subscription-detail-label">续费金额</span>
+                <span class="subscription-detail-value">¥15/月</span>
+              </div>
+            </div>
+            <button class="cancel-btn" id="cancel-subscription-btn">取消自动续费</button>
+          </div>
         </div>
 
         <!-- 挽留弹窗 -->
@@ -1716,6 +1835,19 @@
     // 拦截层：暂不开通按钮
     vipElements.closeInterceptBtn.addEventListener('click', () => {
       vipElements.interceptModal.classList.remove('active');
+    });
+
+    // VIP返回按钮
+    document.getElementById('vip-back-btn').addEventListener('click', () => {
+      clearInterval(countdownInterval);
+      setShieldState('HIDDEN');
+      switchPage('HOME_STAGE');
+    });
+
+    // 订阅管理页返回按钮
+    document.getElementById('unsub-back-btn').addEventListener('click', () => {
+      setShieldState('HIDDEN');
+      switchPage('HOME_STAGE');
     });
 
     // 倒计时功能
