@@ -337,14 +337,13 @@
       padding: 0 30px;
     }
 
-    /* 假关闭按钮（诱饵） */
+    /* 假关闭按钮（诱饵）- 右上方 */
     .decoy-close-btn {
       position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
+      top: 25%;
+      right: 80px;
+      width: 60px;
+      height: 60px;
       background: rgba(255,255,255,0.95);
       border-radius: 50%;
       display: flex;
@@ -357,7 +356,7 @@
     }
 
     .decoy-close-btn .x-icon {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 300;
       color: #e74c3c;
     }
@@ -387,18 +386,17 @@
       opacity: 1;
     }
 
-    /* 真跳过按钮 */
+    /* 真跳过按钮 - 右上方 */
     .real-skip-btn {
       position: absolute;
-      top: 65%;
-      right: 50%;
-      transform: translateX(50%);
-      font-size: 5px;
-      color: rgba(255,255,255,0.3);
+      top: 25%;
+      right: 15px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
       cursor: pointer;
       transition: all var(--transition-speed) var(--ease-in-out);
-      padding: 4px 8px;
-      border-radius: 4px;
+      padding: 6px 12px;
+      border-radius: 6px;
       text-align: center;
     }
 
@@ -407,8 +405,9 @@
       font-size: 16px;
       color: #fff;
       font-weight: 600;
-      background: rgba(30, 144, 255, 0.2);
-      padding: 8px 16px;
+      background: rgba(30, 144, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 8px;
     }
 
     /* AI推荐标记 */
@@ -477,9 +476,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
       z-index: 10;
+    }
+
+    .home-content {
+      padding-top: 60px;
     }
 
     .home-logo {
@@ -907,6 +912,257 @@
       font-weight: 600;
       cursor: pointer;
     }
+
+    /* ==================== 订阅管理页 ==================== */
+    .page#unsub-stage {
+      background: #f5f5f7;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-speed) var(--ease-in-out);
+    }
+
+    .unsub-header {
+      background: #fff;
+      padding: 80px 20px 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .unsub-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .unsub-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .unsub-content {
+      padding: 20px;
+    }
+
+    .subscription-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .subscription-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .subscription-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .subscription-status {
+      padding: 4px 12px;
+      background: #e3f2fd;
+      color: var(--bright-blue);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .subscription-detail {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .subscription-detail-label {
+      color: var(--text-secondary);
+    }
+
+    .subscription-detail-value {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .cancel-btn {
+      width: 100%;
+      height: 48px;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      color: var(--text-primary);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+    }
+
+    /* 挽留弹窗 */
+    .retention-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-speed) var(--ease-in-out);
+      z-index: 950;
+    }
+
+    .retention-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .retention-content {
+      background: #fff;
+      border-radius: 24px;
+      padding: 32px 24px;
+      width: calc(100% - 48px);
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .retention-emoji {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .retention-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .retention-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .retention-coupon {
+      background: linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%);
+      border: 2px dashed #ff9500;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .retention-coupon-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ff9500;
+    }
+
+    .retention-coupon-label {
+      font-size: 12px;
+      color: #ff9500;
+    }
+
+    .retention-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .retention-stay-btn {
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .retention-leave-btn {
+      width: 100%;
+      height: 44px;
+      background: #f5f5f7;
+      color: var(--text-secondary);
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* 净化后的挽留弹窗样式 */
+    .retention-modal.purified .retention-coupon,
+    .retention-modal.purified .retention-stay-btn {
+      filter: blur(4px);
+      opacity: 0.2;
+    }
+
+    .retention-modal.purified .retention-leave-btn {
+      background: var(--bright-blue);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      height: 52px;
+      box-shadow:
+        0 0 0 3px rgba(30, 144, 255, 0.2),
+        0 0 30px rgba(30, 144, 255, 0.4);
+      animation: leave-btn-glow 2s var(--ease-in-out) infinite;
+    }
+
+    @keyframes leave-btn-glow {
+      0%, 100% {
+        box-shadow:
+          0 0 0 3px rgba(30, 144, 255, 0.2),
+          0 0 30px rgba(30, 144, 255, 0.4);
+      }
+      50% {
+        box-shadow:
+          0 0 0 3px rgba(30, 144, 255, 0.4),
+          0 0 50px rgba(30, 144, 255, 0.6);
+      }
+    }
+
+    /* 成功提示Toast */
+    .toast {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-speed) var(--ease-in-out);
+      z-index: 1000;
+      max-width: calc(100% - 48px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast .emoji {
+      font-size: 24px;
+      margin-bottom: 8px;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -964,15 +1220,15 @@
 
       <!-- 首页 -->
       <div id="home-stage" class="page">
-        <div style="padding-bottom: 60px;">
-          <div class="home-header">
-            <div class="home-logo">STREAM+</div>
-            <div class="home-icons">
-              <span>📺</span>
-              <span>🔍</span>
-              <span>👤</span>
-            </div>
+        <div class="home-header">
+          <div class="home-logo">STREAM+</div>
+          <div class="home-icons">
+            <span>📺</span>
+            <span>🔍</span>
+            <span>👤</span>
           </div>
+        </div>
+        <div class="home-content" style="padding-bottom: 60px;">
           <div class="home-search">搜索视频、电影、综艺...</div>
           <div class="banner">限时特惠 · 新用户首月1元</div>
 
@@ -1057,6 +1313,7 @@
             <span>我的</span>
           </div>
         </div>
+        </div>
       </div>
 
       <!-- VIP购买页 -->
@@ -1118,7 +1375,56 @@
       </div>
 
       <!-- 订阅管理页 -->
-      <div id="unsub-stage" class="page"></div>
+      <div id="unsub-stage" class="page">
+        <div class="unsub-header">
+          <div class="unsub-title">订阅管理</div>
+          <div class="unsub-subtitle">管理您的会员服务</div>
+        </div>
+        <div class="unsub-content">
+          <div class="subscription-card">
+            <div class="subscription-card-header">
+              <span class="subscription-name">STREAM+ 月卡会员</span>
+              <span class="subscription-status">生效中</span>
+            </div>
+            <div class="subscription-detail">
+              <span class="subscription-detail-label">订阅类型</span>
+              <span class="subscription-detail-value">自动续费月卡</span>
+            </div>
+            <div class="subscription-detail">
+              <span class="subscription-detail-label">到期时间</span>
+              <span class="subscription-detail-value">2026-06-23</span>
+            </div>
+            <div class="subscription-detail">
+              <span class="subscription-detail-label">续费金额</span>
+              <span class="subscription-detail-value">¥15/月</span>
+            </div>
+          </div>
+          <button class="cancel-btn" id="cancel-subscription-btn">取消自动续费</button>
+        </div>
+
+        <!-- 挽留弹窗 -->
+        <div class="retention-modal" id="retention-modal">
+          <div class="retention-content">
+            <div class="retention-emoji">😢</div>
+            <div class="retention-title">送你5元观影券，求你别走！</div>
+            <div class="retention-desc">我们准备了专属福利，希望你能继续留下来</div>
+            <div class="retention-coupon">
+              <div class="retention-coupon-value">¥5</div>
+              <div class="retention-coupon-label">观影抵用券</div>
+            </div>
+            <div class="retention-buttons">
+              <button class="retention-stay-btn" id="retention-stay-btn">留下来</button>
+              <button class="retention-leave-btn" id="retention-leave-btn">狠心离开</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast提示 -->
+      <div class="toast" id="toast">
+        <span class="emoji">🛡️</span>
+        自动续费已成功取消，感谢使用套路终结者！
+      </div>
     </div>
 
     <!-- 悬浮盾 -->
@@ -1458,9 +1764,97 @@
         clearInterval(countdownInterval);
         setShieldState('HIDDEN');
         switchPage('UNSUB_STAGE');
-        // 后续阶段五会添加订阅管理页内容
+        // 触发订阅管理页的悬浮盾
+        setTimeout(() => {
+          setShieldState('ALERTING');
+        }, 500);
       }
     });
+
+    // ==================== 阶段五：订阅管理页退订指引 ====================
+
+    const unsubElements = {
+      retentionModal: document.getElementById('retention-modal'),
+      cancelSubBtn: document.getElementById('cancel-subscription-btn'),
+      stayBtn: document.getElementById('retention-stay-btn'),
+      leaveBtn: document.getElementById('retention-leave-btn'),
+      toast: document.getElementById('toast')
+    };
+
+    // 取消订阅按钮
+    unsubElements.cancelSubBtn.addEventListener('click', () => {
+      unsubElements.retentionModal.classList.add('active');
+    });
+
+    // 挽留弹窗：留下来按钮
+    unsubElements.stayBtn.addEventListener('click', () => {
+      unsubElements.retentionModal.classList.remove('active');
+      console.log('用户选择留下');
+    });
+
+    // 挽留弹窗：离开按钮
+    unsubElements.leaveBtn.addEventListener('click', () => {
+      if (simulationState.shieldState === 'PURIFIED') {
+        unsubElements.retentionModal.classList.remove('active');
+        // 显示成功提示
+        unsubElements.toast.classList.add('show');
+        setTimeout(() => {
+          unsubElements.toast.classList.remove('show');
+        }, 3000);
+        simulationState.isAutoRenewCancelled = true;
+        setShieldState('HIDDEN');
+        console.log('✓ 自动续费已取消');
+      }
+    });
+
+    // 更新悬浮盾点击事件，支持UNSUB阶段
+    const originalOnShieldClick = onShieldClick;
+    onShieldClick = function() {
+      if (simulationState.isAnimating) return;
+
+      openBottomSheet();
+
+      // 根据当前阶段显示不同的扫描日志
+      if (simulationState.currentStage === 'AD_STAGE') {
+        playScanLog('识别到1处诱导下载广告...', () => {
+          elements.actionButton.onclick = () => purifyAdStage();
+        });
+      } else if (simulationState.currentStage === 'VIP_STAGE') {
+        playScanLog('识别到2处焦虑性高压促销...', () => {
+          elements.actionButton.onclick = () => purifyVipStage();
+        });
+      } else if (simulationState.currentStage === 'UNSUB_STAGE') {
+        playScanLog('识别到退订路障，启动路径引导...', () => {
+          elements.actionButton.textContent = '开始引导';
+          elements.actionButton.onclick = () => purifyUnsubStage();
+        });
+      }
+    };
+
+    // 重新绑定悬浮盾事件
+    elements.shieldBall.removeEventListener('click', originalOnShieldClick);
+    elements.shieldBall.addEventListener('click', onShieldClick);
+
+    // 净化订阅管理页
+    function purifyUnsubStage() {
+      if (simulationState.isAnimating) return;
+      simulationState.isAnimating = true;
+
+      closeBottomSheet();
+
+      // 应用净化样式
+      setTimeout(() => {
+        // 挽留弹窗：模糊+透明度降低
+        unsubElements.retentionModal.classList.add('purified');
+        // 离开按钮：文字改写
+        unsubElements.leaveBtn.textContent = '确认取消订阅';
+
+        setShieldState('PURIFIED');
+        simulationState.isAnimating = false;
+
+        console.log('✓ 订阅管理页净化完成');
+      }, 300);
+    }
 
     // 修改页面切换函数，支持VIP和UNSUB页面
     const originalSwitchPage = switchPage;
