@@ -1,0 +1,79 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: 9:41
+    - img [ref=e7]
+  - generic [ref=e10]:
+    - generic [ref=e12]:
+      - generic [ref=e13]: STREAM+
+      - generic [ref=e14]:
+        - text: 海量视频 · 无限畅看
+        - text: 新用户首月仅需 15 元
+      - generic [ref=e15] [cursor=pointer]:
+        - generic [ref=e16]: ×
+        - generic [ref=e17]: ⓘ 诱饵
+      - generic [ref=e18] [cursor=pointer]:
+        - text: 跳过
+        - generic [ref=e19]:
+          - img [ref=e20]
+          - text: AI推荐
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]: STREAM+
+        - generic [ref=e25]:
+          - generic [ref=e26]: 📺
+          - generic [ref=e27]: 🔍
+          - generic [ref=e28]: 👤
+      - generic [ref=e29]:
+        - generic [ref=e30]: 搜索视频、电影、综艺...
+        - generic [ref=e31]: 限时特惠 · 新用户首月15元
+        - generic [ref=e32]: 热门推荐
+        - generic [ref=e33]:
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e36]: ▶
+            - generic [ref=e37]:
+              - generic [ref=e38]: 都市爱情剧
+              - generic [ref=e39]: 2.3亿播放 · 45集
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e42]: ▶
+            - generic [ref=e43]:
+              - generic [ref=e44]: 科幻大片
+              - generic [ref=e45]: 1.8亿播放 · 2小时
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e48]: ▶
+            - generic [ref=e49]:
+              - generic [ref=e50]: 悬疑推理
+              - generic [ref=e51]: 3.1亿播放 · 24集
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e54]: ▶
+            - generic [ref=e55]:
+              - generic [ref=e56]: 综艺真人秀
+              - generic [ref=e57]: 5.6亿播放 · 12期
+        - generic [ref=e58]: 为你推荐
+        - generic [ref=e59]:
+          - generic [ref=e60] [cursor=pointer]:
+            - generic [ref=e62]: ▶
+            - generic [ref=e63]:
+              - generic [ref=e64]: 喜剧电影
+              - generic [ref=e65]: 8900万播放 · 1.5小时
+          - generic [ref=e66] [cursor=pointer]:
+            - generic [ref=e68]: ▶
+            - generic [ref=e69]:
+              - generic [ref=e70]: 动画番剧
+              - generic [ref=e71]: 1.2亿播放 · 12集
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - generic [ref=e74]: 🏠
+          - generic [ref=e75]: 首页
+        - generic [ref=e76]:
+          - generic [ref=e77]: 🎬
+          - generic [ref=e78]: 视频
+        - generic [ref=e79]:
+          - generic [ref=e80]: 📺
+          - generic [ref=e81]: 直播
+        - generic [ref=e82]:
+          - generic [ref=e83]: 👤
+          - generic [ref=e84]: 我的
+    - img [ref=e86] [cursor=pointer]
+    - generic [ref=e88]:
+      - generic [ref=e90]: "[AI] 等待扫描..."
+      - button "一键净化" [ref=e91] [cursor=pointer]

@@ -144,33 +144,14 @@
     .shield-ball.alerting {
       right: 15px;
       opacity: 1;
-      background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
-      animation: shield-pulse-yellow var(--pulse-duration) var(--ease-in-out) infinite;
-    }
-
-    @keyframes shield-pulse-yellow {
-
-      0%,
-      100% {
-        box-shadow:
-          0 8px 32px rgba(241, 196, 15, 0.4),
-          inset 0 2px 4px rgba(255, 255, 255, 0.3);
-      }
-
-      50% {
-        box-shadow:
-          0 8px 48px rgba(241, 196, 15, 0.7),
-          0 0 60px rgba(241, 196, 15, 0.3),
-          inset 0 2px 4px rgba(255, 255, 255, 0.3);
-      }
+      animation: shield-pulse var(--pulse-duration) var(--ease-in-out) infinite;
     }
 
     /* 悬浮盾 - 净化状态 */
     .shield-ball.purified {
-      right: -30px;
+      right: 15px;
       opacity: 1;
       background: linear-gradient(135deg, var(--safe-green) 0%, #27ae60 100%);
-      transition: right 400ms var(--bounce-ease);
     }
 
     /* 呼吸光晕动画 */
@@ -1716,98 +1697,6 @@
     .halo-glow-blue {
       animation: halo-glow-blue 1.5s var(--ease-in-out) infinite;
     }
-
-    /* ==================== 引导箭头样式 ==================== */
-    .guide-arrow {
-      position: absolute;
-      font-size: 24px;
-      color: var(--bright-blue);
-      z-index: 1002;
-      animation: arrow-bounce 1s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes arrow-bounce {
-
-      0%,
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      50% {
-        transform: translateY(6px);
-        opacity: 0.7;
-      }
-    }
-
-    /* 底部导航栏箭头弹跳 */
-    .guide-arrow.bottom-nav-arrow {
-      animation: arrow-bounce-down 0.8s ease-in-out infinite;
-      font-size: 28px;
-      color: var(--bright-blue);
-      text-shadow: 0 0 12px rgba(30, 144, 255, 0.6);
-    }
-
-    @keyframes arrow-bounce-down {
-
-      0%,
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      50% {
-        transform: translateY(10px);
-        opacity: 0.5;
-      }
-    }
-
-    /* 温和高亮样式 */
-    .gentle-highlight {
-      box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.5), 0 0 40px rgba(30, 144, 255, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-      animation: gentle-pulse 1.5s ease-in-out infinite !important;
-      position: relative !important;
-      z-index: 1000 !important;
-      border-radius: 12px !important;
-    }
-
-    @keyframes gentle-pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.5), 0 0 40px rgba(30, 144, 255, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3);
-        transform: scale(1);
-      }
-
-      50% {
-        box-shadow: 0 0 0 6px rgba(30, 144, 255, 0.7), 0 0 60px rgba(30, 144, 255, 0.6), 0 12px 48px rgba(0, 0, 0, 0.4);
-        transform: scale(1.02);
-      }
-    }
-
-    /* 强力高亮样式 */
-    .strong-highlight {
-      box-shadow: 0 0 0 5px rgba(46, 204, 113, 0.7), 0 0 50px rgba(46, 204, 113, 0.6), 0 10px 40px rgba(0, 0, 0, 0.35) !important;
-      animation: strong-pulse 1.5s ease-in-out infinite !important;
-      position: relative !important;
-      z-index: 1000 !important;
-      border-radius: 12px !important;
-    }
-
-    @keyframes strong-pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 5px rgba(46, 204, 113, 0.7), 0 0 50px rgba(46, 204, 113, 0.6), 0 10px 40px rgba(0, 0, 0, 0.35);
-        transform: scale(1);
-      }
-
-      50% {
-        box-shadow: 0 0 0 8px rgba(46, 204, 113, 0.9), 0 0 70px rgba(46, 204, 113, 0.7), 0 15px 60px rgba(0, 0, 0, 0.45);
-        transform: scale(1.03);
-      }
-    }
   </style>
 </head>
 
@@ -2196,13 +2085,10 @@
 
       <!-- 引导提示气泡 -->
       <div class="guide-bubble" id="guide-bubble" style="display: none;"></div>
-
-      <!-- 引导箭头 -->
-      <div class="guide-arrow" id="guide-arrow" style="display: none;">→</div>
     </div>
 
     <!-- 调试面板（开发阶段使用） -->
-    <div class="debug-panel" id="debug-panel" style="display: none;">
+    <div class="debug-panel" id="debug-panel">
       <span class="debug-close" onclick="this.parentElement.style.display='none'">✕</span>
       <div><span class="label">Stage:</span><span id="debug-stage">AD_STAGE</span></div>
       <div><span class="label">Shield:</span><span id="debug-shield">HIDDEN</span></div>
@@ -2221,7 +2107,7 @@
         scanLogActive: false,
 
         // 用户操作状态
-        isVipPurchased: false,      // 默认用户不是自动续费会员
+        isVipPurchased: true,       // 默认用户已是自动续费会员
         isAutoRenewCancelled: false, // 是否成功取消自动续费
 
         // 动画是否在进行中（防止重复触发）
@@ -2252,7 +2138,6 @@
         actionButton: document.getElementById('action-button'),
         guideButton: document.getElementById('guide-button'),
         guideBubble: document.getElementById('guide-bubble'),
-        guideArrow: document.getElementById('guide-arrow'),
 
         // 调试面板
         debugPanel: document.getElementById('debug-panel'),
@@ -2264,154 +2149,82 @@
       let currentHighlightedElement = null;
 
       // 显示引导高亮和气泡
-      function showGuideHighlight(element, text, highlightClass = 'gentle-highlight', showArrow = true) {
+      function showGuideHighlight(element, text) {
         // 清除之前的高亮
         clearGuideHighlight();
 
         // 添加高亮类
-        element.classList.add(highlightClass);
+        element.classList.add('guide-highlight');
         currentHighlightedElement = element;
 
         // 计算气泡位置
         const rect = element.getBoundingClientRect();
         const iphoneRect = document.querySelector('.iphone-container').getBoundingClientRect();
 
-        const relLeft = rect.left - iphoneRect.left;
-        const relTop = rect.top - iphoneRect.top;
-        const isBottomNav = element.dataset.nav;
-
-        // 显示气泡（始终在目标元素上方）
         elements.guideBubble.textContent = text;
         elements.guideBubble.style.display = 'block';
-        elements.guideBubble.style.left = (relLeft + rect.width / 2 - 70) + 'px';
-
-        // 底部导航栏的气泡需要更高，以免被遮挡
-        if (isBottomNav) {
-          elements.guideBubble.style.top = (relTop - 80) + 'px';
-        } else {
-          elements.guideBubble.style.top = (relTop - 65) + 'px';
-        }
-
-        // 显示箭头
-        if (showArrow && relLeft > 0) {
-          elements.guideArrow.style.display = 'block';
-          if (isBottomNav) {
-            // 底部导航栏：↓ 箭头从上方指向下方
-            elements.guideArrow.textContent = '↓';
-            elements.guideArrow.className = 'guide-arrow bottom-nav-arrow';
-            elements.guideArrow.style.left = (relLeft + rect.width / 2 - 12) + 'px';
-            elements.guideArrow.style.top = (relTop - 45) + 'px';
-          } else {
-            // 其他元素：→ 箭头从左侧指向右侧
-            elements.guideArrow.textContent = '→';
-            elements.guideArrow.className = 'guide-arrow';
-            elements.guideArrow.style.left = (relLeft - 30) + 'px';
-            elements.guideArrow.style.top = (relTop + rect.height / 2 - 12) + 'px';
-          }
-        }
+        elements.guideBubble.style.left = (rect.left - iphoneRect.left + rect.width / 2 - 70) + 'px';
+        elements.guideBubble.style.top = (rect.top - iphoneRect.top - 60) + 'px';
       }
 
       // 清除引导高亮
       function clearGuideHighlight() {
         if (currentHighlightedElement) {
-          currentHighlightedElement.classList.remove('gentle-highlight', 'strong-highlight', 'guide-highlight');
+          currentHighlightedElement.classList.remove('guide-highlight');
           currentHighlightedElement = null;
         }
         elements.guideBubble.style.display = 'none';
-        elements.guideArrow.style.display = 'none';
       }
 
-      // 退订引导步骤 - 完整流程
+      // 退订引导步骤
       const unsubscribeGuideSteps = [
         {
-          stage: 'HOME_STAGE',
-          target: () => document.querySelector('.nav-item[data-nav="my"]'),
-          text: '点击"我的"进入个人中心',
-          highlightClass: 'gentle-highlight',
+          target: () => document.getElementById('cancel-subscription-btn'),
+          text: '点击这里开始退订',
           nextStep: () => {
-            switchPage('MY_STAGE');
+            unsubElements.retentionModal.classList.add('active');
           }
         },
         {
-          stage: 'MY_STAGE',
-          target: () => document.querySelector('.list-item[data-item="vip-mgt"]'),
-          text: '点击VIP会员管理',
-          highlightClass: 'gentle-highlight',
-          nextStep: () => {
-            switchPage('VIP_MGT_STAGE');
-          }
-        },
-        {
-          stage: 'VIP_MGT_STAGE',
-          target: () => document.getElementById('auto-renew-link'),
-          text: '点击自动续费管理',
-          highlightClass: 'strong-highlight',
-          nextStep: () => {
-            const unsubModal = document.getElementById('unsub-modal');
-            if (unsubModal) {
-              unsubModal.classList.add('active');
-            }
-          }
-        },
-        {
-          stage: 'UNSUB_STAGE',
-          target: () => document.getElementById('unsub-leave-link'),
-          text: '点击确认取消订阅',
-          highlightClass: 'strong-highlight',
+          target: () => document.getElementById('retention-leave-btn'),
+          text: '点击这里确认取消订阅',
           preAction: () => {
-            // 净化弹窗
-            const unsubModal = document.getElementById('unsub-modal');
-            if (unsubModal) {
-              unsubModal.classList.add('purified');
-            }
-            const leaveLink = document.getElementById('unsub-leave-link');
-            if (leaveLink) {
-              leaveLink.textContent = '确认取消订阅';
-            }
+            // 净化界面
+            unsubElements.retentionModal.classList.add('purified');
+            unsubElements.leaveBtn.textContent = '确认取消订阅';
           }
         }
       ];
 
-      // 当前引导步骤索引
-      let currentGuideStepIndex = 0;
-
       // 开始退订引导
       function startUnsubscribeGuide() {
         simulationState.guideActive = true;
-        currentGuideStepIndex = 0;
-        closeBottomSheet();
-
-        // 始终切换到首页再高亮底部导航栏，否则底部导航栏会被其他 overlay 页面遮挡
-        switchPage('HOME_STAGE');
-
-        // 等待页面切换完成后再展示引导
-        setTimeout(() => {
-          executeGuideStep();
-        }, 200);
+        simulationState.guideStep = 0;
+        executeGuideStep(0);
       }
 
       // 执行引导步骤
-      function executeGuideStep() {
-        if (currentGuideStepIndex >= unsubscribeGuideSteps.length) {
+      function executeGuideStep(stepIndex) {
+        if (stepIndex >= unsubscribeGuideSteps.length) {
           // 引导完成
           simulationState.guideActive = false;
           clearGuideHighlight();
           return;
         }
 
-        const step = unsubscribeGuideSteps[currentGuideStepIndex];
+        const step = unsubscribeGuideSteps[stepIndex];
+        simulationState.guideStep = stepIndex;
+
+        // 执行前置操作（如果有）
+        if (step.preAction) {
+          step.preAction();
+        }
 
         // 等待DOM更新后显示高亮
         setTimeout(() => {
           const target = step.target();
           if (target) {
-            // 执行前置操作
-            if (step.preAction) {
-              step.preAction();
-            }
-
-            // 显示高亮和气泡
-            showGuideHighlight(target, step.text, step.highlightClass);
+            showGuideHighlight(target, step.text);
 
             // 添加一次性点击监听器
             const handleGuideClick = (e) => {
@@ -2421,15 +2234,9 @@
               // 清除高亮
               clearGuideHighlight();
 
-              // 执行下一步操作
-              if (step.nextStep) {
-                step.nextStep();
-              }
-
               // 进入下一步
-              currentGuideStepIndex++;
               setTimeout(() => {
-                executeGuideStep();
+                executeGuideStep(stepIndex + 1);
               }, 300);
             };
 
@@ -2541,7 +2348,6 @@
       // 页面加载后触发悬浮盾出现（2秒延迟）
       function triggerAdStageShield() {
         setTimeout(() => {
-          // 开屏广告阶段显示黄色警报状态，因为这是黑暗模式诱导场景
           setShieldState('ALERTING');
         }, 2000);
       }
@@ -2555,33 +2361,35 @@
 
         openBottomSheet();
 
-        // 根据当前阶段显示不同的扫描日志和按钮
+        // 根据当前阶段显示不同的扫描日志
         if (simulationState.currentStage === 'AD_STAGE') {
           elements.guideButton.style.display = 'none';
           elements.actionButton.style.display = 'block';
-          elements.actionButton.textContent = '一键净化';
           playScanLog('识别到1处诱导下载广告...', () => {
+            // 扫描完成后，准备执行净化
             elements.actionButton.onclick = () => purifyAdStage();
           });
-        } else if (simulationState.currentStage === 'HOME_STAGE' || simulationState.currentStage === 'MY_STAGE') {
-          elements.guideButton.style.display = 'none';
-          elements.actionButton.style.display = 'block';
-          if (simulationState.isVipPurchased) {
-            elements.actionButton.textContent = '开始退订指引';
-            playScanLog('检测到自动续费会员，点击开始退订指引...', () => {
-              elements.actionButton.onclick = () => {
-                startUnsubscribeGuide();
-              };
-            });
-          } else {
-            elements.actionButton.textContent = '开通VIP';
-            playScanLog('当前页面安全，暂未检测到自动续费会员...', () => {
-              elements.actionButton.onclick = () => {
-                closeBottomSheet();
-                switchPage('VIP_STAGE');
-              };
-            });
-          }
+        } else if (simulationState.currentStage === 'HOME_STAGE') {
+          elements.guideButton.style.display = 'block';
+          elements.actionButton.style.display = 'none';
+          playScanLog('当前页面安全，点击下方按钮开始退订指引...', () => {
+            // 退订指引按钮点击事件
+            elements.guideButton.onclick = () => {
+              closeBottomSheet();
+              // 跳转到"我的"页面
+              switchPage('MY_STAGE');
+            };
+          });
+        } else if (simulationState.currentStage === 'MY_STAGE') {
+          elements.guideButton.style.display = 'block';
+          elements.actionButton.style.display = 'none';
+          playScanLog('当前页面安全，点击下方按钮开始退订指引...', () => {
+            elements.guideButton.onclick = () => {
+              closeBottomSheet();
+              // 跳转到VIP会员管理页
+              switchPage('VIP_MGT_STAGE');
+            };
+          });
         } else if (simulationState.currentStage === 'VIP_MGT_STAGE') {
           elements.guideButton.style.display = 'none';
           elements.actionButton.style.display = 'block';
@@ -2592,29 +2400,19 @@
         } else if (simulationState.currentStage === 'VIP_STAGE') {
           elements.guideButton.style.display = 'none';
           elements.actionButton.style.display = 'block';
-          elements.actionButton.textContent = '一键净化';
           playScanLog('识别到2处焦虑性高压促销...', () => {
             elements.actionButton.onclick = () => purifyVipStage();
           });
         } else if (simulationState.currentStage === 'UNSUB_STAGE') {
           elements.guideButton.style.display = 'none';
           elements.actionButton.style.display = 'block';
-          if (simulationState.isVipPurchased && !simulationState.isAutoRenewCancelled) {
-            elements.actionButton.textContent = '开始退订指引';
-            playScanLog('[AI 扫描中...]\n[警告] 侦测到阻碍性挽留弹窗！\n[提示] 启动逐步引导，带你找到退订入口。', () => {
-              elements.actionButton.onclick = () => {
-                startUnsubscribeGuide();
-              };
-            });
-          } else {
-            elements.actionButton.textContent = '路径引导';
-            playScanLog('[AI 扫描中...]\n[警告] 侦测到阻碍性挽留弹窗！\n[提示] "留下来"按钮为诱导交互，真实的退订按钮已被故意弱化。', () => {
-              elements.actionButton.onclick = () => {
-                closeBottomSheet();
-                purifyUnsubModal();
-              };
-            });
-          }
+          elements.actionButton.textContent = '路径引导';
+          playScanLog('[AI 扫描中...]\n[警告] 侦测到阻碍性挽留弹窗！\n[提示] "留下来"按钮为诱导交互，真实的退订按钮已被故意弱化。', () => {
+            elements.actionButton.onclick = () => {
+              closeBottomSheet();
+              purifyUnsubModal();
+            };
+          });
         }
       }
 
@@ -2652,14 +2450,11 @@
           // 平滑过渡到首页
           console.log('跳过广告，进入首页');
           closeBottomSheet();
+          setShieldState('HIDDEN');
           switchPage('HOME_STAGE');
-          // 根据用户是否购买VIP显示不同状态
+          // 首页也激活悬浮盾，提供退订指引功能
           setTimeout(() => {
-            if (simulationState.isVipPurchased) {
-              setShieldState('ALERTING');
-            } else {
-              setShieldState('PURIFIED');
-            }
+            setShieldState('ALERTING');
           }, 1000);
         }
       });
@@ -2726,27 +2521,14 @@
       // VIP返回按钮
       document.getElementById('vip-back-btn').addEventListener('click', () => {
         clearInterval(countdownInterval);
+        setShieldState('HIDDEN');
         switchPage('HOME_STAGE');
-        // 根据用户是否购买VIP显示不同状态
-        setTimeout(() => {
-          if (simulationState.isVipPurchased) {
-            setShieldState('ALERTING'); // 购买后显示黄色警报
-          } else {
-            setShieldState('PURIFIED'); // 未购买显示绿色半隐藏
-          }
-        }, 500);
       });
 
       // 订阅管理页返回按钮
       document.getElementById('unsub-back-btn').addEventListener('click', () => {
+        setShieldState('HIDDEN');
         switchPage('HOME_STAGE');
-        setTimeout(() => {
-          if (simulationState.isVipPurchased) {
-            setShieldState('ALERTING');
-          } else {
-            setShieldState('PURIFIED');
-          }
-        }, 500);
       });
 
       // 更新价格显示
@@ -2824,11 +2606,11 @@
       vipElements.confirmPurchaseBtn.addEventListener('click', () => {
         if (simulationState.shieldState === 'PURIFIED') {
           simulationState.isVipPurchased = true;
-          console.log('VIP购买成功，返回首页准备退订指引');
+          console.log('VIP购买成功，进入订阅管理页');
           clearInterval(countdownInterval);
           setShieldState('HIDDEN');
-          switchPage('HOME_STAGE');
-          // 返回首页后触发悬浮盾，提示用户可以开始退订指引
+          switchPage('UNSUB_STAGE');
+          // 触发订阅管理页的悬浮盾
           setTimeout(() => {
             setShieldState('ALERTING');
           }, 500);
@@ -3018,22 +2800,16 @@
           item.addEventListener('click', () => {
             const navKey = item.dataset.nav;
             if (navKey === 'home') {
+              setShieldState('HIDDEN');
               switchPage('HOME_STAGE');
               setTimeout(() => {
-                if (simulationState.isVipPurchased) {
-                  setShieldState('ALERTING');
-                } else {
-                  setShieldState('PURIFIED');
-                }
+                setShieldState('ALERTING');
               }, 500);
             } else if (navKey === 'my') {
+              setShieldState('HIDDEN');
               switchPage('MY_STAGE');
               setTimeout(() => {
-                if (simulationState.isVipPurchased) {
-                  setShieldState('ALERTING');
-                } else {
-                  setShieldState('PURIFIED');
-                }
+                setShieldState('ALERTING');
               }, 500);
             }
           });
@@ -3045,13 +2821,10 @@
           item.addEventListener('click', () => {
             const itemKey = item.dataset.item;
             if (itemKey === 'vip-mgt') {
+              setShieldState('HIDDEN');
               switchPage('VIP_MGT_STAGE');
               setTimeout(() => {
-                if (simulationState.isVipPurchased) {
-                  setShieldState('ALERTING');
-                } else {
-                  setShieldState('PURIFIED');
-                }
+                setShieldState('ALERTING');
               }, 500);
             }
           });
@@ -3061,14 +2834,8 @@
         const vipMgtBackBtn = document.getElementById('vip-mgt-back-btn');
         if (vipMgtBackBtn) {
           vipMgtBackBtn.addEventListener('click', () => {
+            setShieldState('HIDDEN');
             switchPage('MY_STAGE');
-            setTimeout(() => {
-              if (simulationState.isVipPurchased) {
-                setShieldState('ALERTING');
-              } else {
-                setShieldState('PURIFIED');
-              }
-            }, 500);
           });
         }
 
